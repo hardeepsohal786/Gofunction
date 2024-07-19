@@ -2,17 +2,23 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
-// IsEven returns true if the number is even, false otherwise.
-func IsEven(n int) bool {
-	return n%2 == 0
+// ConvertStringToInt converts a string to an integer. Returns an error if the conversion fails.
+func ConvertStringToInt(s string) (int, error) {
+	return strconv.Atoi(s)
 }
 
 func main() {
-	// Example usage of the IsEven function
-	numbers := []int{2, 3, 0, -2, -3}
-	for _, n := range numbers {
-		fmt.Printf("IsEven(%d) = %v\n", n, IsEven(n))
+	// Example usage
+	strs := []string{"123", "456", "789", "invalid"}
+	for _, str := range strs {
+		val, err := ConvertStringToInt(str)
+		if err != nil {
+			fmt.Printf("Error converting '%s': %v\n", str, err)
+		} else {
+			fmt.Printf("Converted '%s' to %d\n", str, val)
+		}
 	}
 }
